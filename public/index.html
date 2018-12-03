@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Google Map Demo</title>
+  <link rel="stylesheet" href="modelo.css" type="text/css">
+</head>
+<body>
+  <center>
+  <h1 class="h1">BIENVENIDOS-WELCOME</h1> 
+  <div id="map"></div>
+  </center>
+
+  <script>
+    function initMap(){
+      // Inicializa la vista del mapa en las siguiebtes coordenadas
+        var startViewMap = {
+          zoom:7,
+          center:{lat:-8.3749335,lng:-74.6517584}
+        }
+
+      // crea un nuevo mapa
+      var map = new google.maps.Map(document.getElementById('map'), startViewMap);
+
+
+      // Array of markers
+      var markers = [
+        {
+          coords:{lat:-9.7199357,lng:-78.2066698},
+          iconImage:'https://i.ibb.co/gJxy1zB/area4.png',
+          content:'<h2 class=h2>EXTRACCION</p></h2>'
+        },
+        {
+          coords:{lat:-6.7813809,lng:-79.9190805},
+          content:'<h2 class=h2>TRANSPORTE</h2>',
+          iconImage :'https://i.ibb.co/yNvY0bL/area1.png'
+        },
+
+         {
+          coords:{lat:-8.3749335,lng:-74.6517584},
+          iconImage:'https://i.ibb.co/HVrYn7t/area2.png',
+          content:'<h2 class=h2>CHANCADORA</h2>'
+        },
+        {
+          coords:{lat:-12.8943504,lng:-74.5363386},
+          content:'<h2 class=h2>ALMACEN</h2>',
+          iconImage :'https://i.ibb.co/YZzGy2Q/area3.png'
+        },
+        {
+          coords:{lat:-7.160593,lng:-78.5217119},
+          content:'<h2 class=h2>PUERTO</h2>',
+          iconImage :'https://i.ibb.co/YZzGy2Q/area3.png'
+        },
+      
+      ];
+
+      // Loop through markers
+      for(var i = 0;i < markers.length;i++){
+        // Add marker
+        addMarker(markers[i]);
+      }
+
+     // Add Marker Function
+       function addMarker(props){
+        var marker = new google.maps.Marker({
+          position:props.coords,
+          map:map,
+        }); 
+      
+
+        // Check content
+        if(props.content){
+          var infoWindow = new google.maps.InfoWindow({
+            content:props.content
+          });
+        }
+
+      marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+                       
+          });
+       
+      }
+    }
+  </script>
+  
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjUlVzErtcnc8NA2PY4SyxDOcZf3az6DY&callback=initMap">
+    </script>
+</body>
+</html>
+
+
+
+
